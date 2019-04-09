@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+
+  web:
+    build: 
+      context: .
+      dockerfile: images/web
+      args:
+        apache_document_root: ${APACHE_DOCUMENT_ROOT}
+    environment:
+      - APACHE_RUN_USER=#1000
+      - APACHE_RUN_GROUP=#1000
+    volumes:
+      - ${APP_WWW}:${WORKING_DIR}
+      - ${APP_HOSTS}:/etc/apache2/sites-available
+      - ${APP_LOGS}:/var/log/apache2
+    ports:
+      - 8080:80
+    working_dir: ${WORKING_DIR}

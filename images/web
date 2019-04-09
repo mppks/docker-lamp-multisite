@@ -1,0 +1,28 @@
+FROM php:7.2-apache
+
+ARG apache_document_root
+ENV APACHE_DOCUMENT_ROOT $apache_document_root
+
+#RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+RUN apt-get update && apt-get install -y \
+	zlib1g-dev \
+	wget \
+	git \
+	mc
+
+RUN docker-php-ext-install \
+	pdo_mysql \
+	zip \
+	iconv \
+	mbstring \
+	mysqli \
+	&& a2enmod \
+	rewrite
+
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
+
+# Custom php.ini
+ADD php.ini /usr/local/etc/php/conf.d/40-custom.ini
