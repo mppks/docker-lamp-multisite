@@ -1,5 +1,7 @@
 FROM php:7.2-apache
 
+MAINTAINER mppks <info@mppks.ru>
+
 ARG apache_document_root
 ENV APACHE_DOCUMENT_ROOT $apache_document_root
 
