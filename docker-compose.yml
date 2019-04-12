@@ -15,9 +15,9 @@ services:
       - ${APP_WWW}:${WORKING_DIR}
       - ${APP_HOSTS}:/etc/apache2/sites-available
       - ${APP_LOGS}:/var/log/apache2
+    working_dir: ${WORKING_DIR}      
     ports:
       - 8080:80
-    working_dir: ${WORKING_DIR}
 
   db:
     image: mysql
@@ -41,3 +41,16 @@ services:
 #     - /sessions
 #     - ~/docker/phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
 #     - /custom/phpmyadmin/theme/:/www/themes/them
+
+  node:
+    image: node
+    user: "node"
+    environment:
+      - NODE_ENV=dev
+    volumes:
+      - ${APP_WWW}:${WORKING_DIR}
+    working_dir: ${WORKING_DIR}
+#    command: npm run watch
+    ports:
+      - 3000:3000
+      - 3001:3001
