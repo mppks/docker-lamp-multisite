@@ -18,10 +18,16 @@ services:
     working_dir: ${WORKING_DIR}      
     ports:
       - 8080:80
+      - 3000:3000
+      - 3001:3001
+    extra_hosts:
+      - "site1:127.0.0.1"
+      - "site2:127.0.0.1"      
 
   db:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: toor
     volumes:
@@ -42,15 +48,15 @@ services:
 #     - ~/docker/phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
 #     - /custom/phpmyadmin/theme/:/www/themes/them
 
-  node:
-    image: node
-    user: "node"
-    environment:
-      - NODE_ENV=dev
-    volumes:
-      - ${APP_WWW}:${WORKING_DIR}
-    working_dir: ${WORKING_DIR}
+#  node:
+#    image: node
+#    user: "node"
+#    environment:
+#      - NODE_ENV=dev
+#    volumes:
+#      - ${APP_WWW}:${WORKING_DIR}
+#    working_dir: ${WORKING_DIR}
 #    command: npm run watch
-    ports:
-      - 3000:3000
-      - 3001:3001
+#    ports:
+#      - 3000:3000
+#      - 3001:3001
