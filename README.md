@@ -42,7 +42,7 @@ LAMP server based on Docker for web development with the possibility of running 
 	$ docker-compose up
 
 ### Run shell in your web service
-	$ docker-compose exec web bash
+	$ docker-compose exec -u pks web bash
 
 ### Install node modules and run scripts
 	$ cd site1/

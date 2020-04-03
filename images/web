@@ -39,3 +39,7 @@ RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/lo
 
 # Custom php.ini
 ADD php.ini /usr/local/etc/php/conf.d/40-custom.ini
+
+# Add user for applications
+RUN groupadd -g 1000 pks
+RUN useradd -u 1000 -ms /bin/bash -g pks pks
