@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
 	libfreetype6-dev \
 	libjpeg62-turbo-dev \
 	libpng-dev \
+	libmagickwand-dev \
 	mc \
 	nodejs
 
@@ -31,6 +32,9 @@ RUN docker-php-ext-install -j$(nproc) \
 	mysqli \
 	bcmath \
 	gd
+
+RUN printf "\n" | pecl install imagick
+RUN docker-php-ext-enable imagick
 
 RUN a2enmod rewrite
 

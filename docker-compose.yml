@@ -38,7 +38,8 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
 #    container_name: phpmyadmin
-#    environment:
+    environment:
+      - UPLOAD_LIMIT=33554432
 #     - PMA_ARBITRARY=1
     restart: always
     ports:

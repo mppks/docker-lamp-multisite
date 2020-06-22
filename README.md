@@ -13,9 +13,6 @@ LAMP server based on Docker for web development with the possibility of running 
 			AllowOverride All
 		</Directory>
 		<Directory /var/www/site1>
-			<IfModule mpm_itk_module>
-	            AssignUserId user-www group-www
-	        </IfModule>
 			Options Indexes FollowSymLinks MultiViews
 			AllowOverride All
 			Order allow,deny
