@@ -30,7 +30,7 @@ LAMP server based on Docker for web development with the possibility of running 
 
 ### Configure local hosts file (e.g. /etc/hosts)
 	127.0.0.1 site1
-	127.0.0.1 site1
+	127.0.0.1 site2
 
 ### Build images before starting containers in first time
 	$ sudo docker-compose up --build
